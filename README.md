@@ -53,6 +53,20 @@ You can then execute your native executable with: `./target/irrigation-service-1
 
 If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
 
-## Set up local db
+## Set up db locally
 
 docker run --name local-postgres -e POSTGRES_USER=user -e POSTGRES_PASSWORD=pass -e POSTGRES_DB=irrigation_db -p 5432:5432 -d postgres
+
+## Set up mqtt locally 
+
+docker run -it --name mosquitto -p 1883:1883 -p 9001:9001 eclipse-mosquitto
+
+# publishing messages 
+
+docker exec -it -u 1883 mosquitto sh
+
+Publish message: 
+mosquitto_pub -h localhost -t test/topic -m "Hello"
+
+Subscribe to message: 
+mosquitto_sub -h localhost -t test/topic
