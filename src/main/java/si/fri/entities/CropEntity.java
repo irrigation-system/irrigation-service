@@ -16,6 +16,9 @@ public class CropEntity {
 
     String name;
 
+    @Column(name = "min_allowed_moisture")
+    private Float minAllowedMoisture;
+
     @Column(name = "coefficient_dev")
     private Float coefficientDev;
 
