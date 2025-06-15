@@ -25,4 +25,6 @@ public class Hourly {
     private List<Float> windspeed_10m;
     private List<String> time;
     private List<Float> snow_depth;
+    private List<Float> et0_fao_evapotranspiration;
+
 }

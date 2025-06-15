@@ -13,4 +13,5 @@ public class Daily {
     private List<String> sunset;
     private List<String> time;
     private List<Float> precipitation_hours;
+    private List<Float> et0_fao_evapotranspiration;
 }

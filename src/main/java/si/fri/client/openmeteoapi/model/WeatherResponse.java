@@ -17,4 +17,6 @@ public class WeatherResponse {
     private int utc_offset_seconds;
     private Hourly hourly;
     private Float longitude;
+    private Current current;
+
 }

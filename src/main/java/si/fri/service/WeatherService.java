@@ -52,38 +52,34 @@ public class WeatherService {
     private si.fri.client.openmeteoapi.model.WeatherResponse fetchFromWeatherAPI(float lat, float lon) {
         List<String> hourlyParameters = List.of("temperature_2m",
                 "relativehumidity_2m",
-                "apparent_temperature",
                 "precipitation",
                 "rain",
-                "showers",
-                "snowfall",
-                "snow_depth",
-                "weathercode",
-                "surface_pressure",
-                "cloudcover",
-                "visibility",
-                "windspeed_10m",
-                "windgusts_10m",
                 "soil_moisture_0_1cm",
-                "is_day");
+                "is_day",
+                "et0_fao_evapotranspiration");
 
         List<String> dailyParameters = List.of("weathercode",
                 "sunrise",
                 "sunset",
-                "precipitation_hours");
+                "precipitation_hours",
+                "et0_fao_evapotranspiration");
+
+        List<String> currentParameters = List.of("temperature_2m",
+                "rain",
+                "relative_humidity_2m");
 
         return weatherForecastAPI.getWeatherData(lat,
                 lon,
                 String.join(",", hourlyParameters),
                 String.join(",", dailyParameters),
-                false,
+                String.join(",", currentParameters),
                 "celsius",
                 "kmh",
                 "mm",
                 "iso8601",
                 "auto",
                 1,
-                1,
+                0,
                 null,
                 null);
     }

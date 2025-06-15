@@ -19,7 +19,7 @@ public interface WeatherForecastAPI {
                                    @QueryParam("longitude") @NotNull Float longitude,
                                    @QueryParam("hourly") @Valid String hourly,
                                    @QueryParam("daily") @Valid String daily,
-                                   @QueryParam("current_weather") Boolean currentWeather,
+                                   @QueryParam("current") @Valid String current,
                                    @QueryParam("temperature_unit") String temperatureUnit,
                                    @QueryParam("windspeed_unit") String windspeedUnit,
                                    @QueryParam("precipitation_unit") String precipitationUnit,
