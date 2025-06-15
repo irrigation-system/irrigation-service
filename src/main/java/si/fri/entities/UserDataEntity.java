@@ -17,7 +17,8 @@ public class UserDataEntity {
     @Column(name="user_token")
     String userToken;
     String irrigationStart;
-    String monthlyRainfall;
+    String monthlyRainfallMonth;
+    Float monthlyRainfall;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "crop_id", referencedColumnName = "id")

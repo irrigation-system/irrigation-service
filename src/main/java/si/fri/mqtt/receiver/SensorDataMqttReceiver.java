@@ -1,5 +1,6 @@
 package si.fri.mqtt.receiver;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -39,8 +40,10 @@ public class SensorDataMqttReceiver {
 
             sensorDataRepository.saveForUser(data);
 
-        } catch (Exception e) {
+        } catch (JsonProcessingException e) {
             logger.severe("Failed to deserialize MQTT message: " + e.getMessage());
+        } catch (Exception e) {
+            logger.severe("Exception: " + e.getMessage());
         }
 
 
