@@ -12,14 +12,14 @@ import java.util.UUID;
 @ToString
 @RequiredArgsConstructor
 @Entity
-@Table(name = "location")
-public class LocationEntity {
-
+@Table(name = "irrigation_data")
+public class IrrigationEntitiy {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     UUID id;
-    Float latitude;
-    Float longitude;
+    String irrigationStart;
+    String monthlyRainfallMonth;
+    Float monthlyRainfall;
 
     @Override
     public final boolean equals(Object o) {
@@ -28,7 +28,7 @@ public class LocationEntity {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        LocationEntity that = (LocationEntity) o;
+        IrrigationEntitiy that = (IrrigationEntitiy) o;
         return getId() != null && Objects.equals(getId(), that.getId());
     }
 

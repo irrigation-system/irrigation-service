@@ -1,48 +1,55 @@
 package si.fri.service;
 
+import io.quarkus.logging.Log;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.NotFoundException;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import si.fri.client.openmeteoapi.WeatherForecastAPI;
 import si.fri.client.openmeteoapi.model.WeatherResponse;
 import si.fri.dto.WeatherDto;
 import si.fri.entities.UserDataEntity;
+import si.fri.entities.WeatherDataEntity;
+import si.fri.mapper.WeatherMapper;
+import si.fri.repositories.WeatherRepository;
 
 import java.util.List;
 
+@ApplicationScoped
 public class WeatherService {
 
     @Inject
     @RestClient
     WeatherForecastAPI weatherForecastAPI;
 
+    @Inject
+    WeatherRepository weatherRepository;
+
+    @Inject
+    WeatherMapper mapper;
+
+
     public WeatherDto getWeatherForecastForUser(UserDataEntity user) {
 
         try {
-            // TODO implement fetching of weather data
-            // WeatherResponse response = fetchFromWeatherAPI(lat, lon);
-            // WeatherDataEntity entity = WeatherResponseToEntityMapper.INSTANCE.mapResponseToEntity(response, user);
+            WeatherResponse response = fetchFromWeatherAPI(user.getLocation().getLatitude(), user.getLocation().getLongitude());
+            WeatherDataEntity entity = mapper.toEntity(response, user);
 
-            // add user to weather
-            // weatherRepository.save(entity);
+            weatherRepository.saveForUser(entity);
+            return mapper.toDto(entity);
 
-            // WeatherDto weatherDto = mapResponseToDto(response);
-
-            //return weatherDto;
-
-        } catch (Exception ex) { // if no
-            //WeatherEntity lastKnown = weatherRepository.findLatestByLocation(lat, lon);
-            //if (lastKnown == null) {
-            //    throw new RuntimeException("No weather data available for location: " + lat + ", " + lon);
-            //}
-            //return mapEntityToDto(lastKnown);
+        } catch (Exception ex) {
+            Log.error("Failed to fetch weather data for user: " + user.getUserToken(), ex);
+            WeatherDataEntity lastKnown = weatherRepository.findLatest(user);
+            if (lastKnown == null) {
+                throw new NotFoundException("No weather data available for location: " + user.getLocation() );
+            }
+            return mapper.toDto(lastKnown);
         }
-
-
-        return null;
     }
 
 
-    private WeatherResponse fetchFromWeatherAPI(float lat, float lon) {
+    private si.fri.client.openmeteoapi.model.WeatherResponse fetchFromWeatherAPI(float lat, float lon) {
         List<String> hourlyParameters = List.of("temperature_2m",
                 "relativehumidity_2m",
                 "apparent_temperature",

@@ -1,4 +1,7 @@
 package si.fri.dto;
 
-public record WeatherDto() {
+import java.time.OffsetDateTime;
+
+public record WeatherDto(OffsetDateTime timestamp, Float rainfallmm, Float etRef, Float humidity, Float temperature) {
+
 }
