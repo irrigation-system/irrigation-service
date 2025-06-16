@@ -13,7 +13,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "irrigation_data")
-public class IrrigationEntitiy {
+public class IrrigationDataEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     UUID id;
@@ -28,7 +28,7 @@ public class IrrigationEntitiy {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        IrrigationEntitiy that = (IrrigationEntitiy) o;
+        IrrigationDataEntity that = (IrrigationDataEntity) o;
         return getId() != null && Objects.equals(getId(), that.getId());
     }
 

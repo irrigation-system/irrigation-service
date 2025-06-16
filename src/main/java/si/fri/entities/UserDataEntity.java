@@ -30,7 +30,7 @@ public class UserDataEntity {
 
     @OneToOne
     @JoinColumn(name = "irrigation_id", referencedColumnName = "id")
-    private IrrigationEntitiy irrigationEntitiy;
+    private IrrigationDataEntity irrigationEntitiy;
 
     @Override
     public final boolean equals(Object o) {
