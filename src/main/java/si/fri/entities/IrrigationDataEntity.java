@@ -20,6 +20,7 @@ public class IrrigationDataEntity {
     String irrigationStart;
     String monthlyRainfallMonth;
     Float monthlyRainfall;
+    Float cultivationArea;
 
     @Override
     public final boolean equals(Object o) {
