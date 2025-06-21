@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -17,7 +18,7 @@ public class IrrigationDataEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     UUID id;
-    String irrigationStart;
+    LocalDateTime irrigationStart;
     String monthlyRainfallMonth;
     Float monthlyRainfall;
     Float cultivationArea;
