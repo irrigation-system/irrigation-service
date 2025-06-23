@@ -3,26 +3,26 @@ package si.fri.resources;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.NoResultException;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.Response;
 import si.fri.dto.IrrigationDataDto;
-import si.fri.dto.WeatherDto;
 import si.fri.entities.UserDataEntity;
+import si.fri.service.IrrigationDataService;
 import si.fri.service.UserService;
-import si.fri.service.WeatherService;
 
 @ApplicationScoped
-public class WeatherResourceImpl implements WeatherResource {
+public class IrrigationDataResourceImpl implements IrrigationDataResource {
 
     @Inject
-    WeatherService weatherService;
+    IrrigationDataService irrigationDataService;
 
     @Inject
     UserService userService;
 
+    @Transactional
     @Override
-    public WeatherDto getCurrentWeatherForecast(String userToken) {
-
+    public IrrigationDataDto getIrrigationData(String userToken) {
         UserDataEntity userDataEntity;
 
         try {
@@ -34,7 +34,6 @@ public class WeatherResourceImpl implements WeatherResource {
             );
         }
 
-        return  weatherService.getWeatherForecastForUser(userDataEntity);
+        return irrigationDataService.getIrrigationData(userDataEntity);
     }
-
 }

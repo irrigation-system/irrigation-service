@@ -3,18 +3,13 @@ package si.fri.resources;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import si.fri.dto.IrrigationDataDto;
-import si.fri.dto.WeatherDto;
 
-@Path("/api/v1/weather")
+@Path("/api/v1/irrigation")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public interface WeatherResource {
+public interface IrrigationDataResource {
 
     @GET
-    WeatherDto getCurrentWeatherForecast(@QueryParam("userToken") String userToken);
+    IrrigationDataDto getIrrigationData(@QueryParam("userToken") String userToken);
 
 }
-
-
-
-

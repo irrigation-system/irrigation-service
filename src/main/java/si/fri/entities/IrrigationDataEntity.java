@@ -18,9 +18,13 @@ public class IrrigationDataEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     UUID id;
+    @Column(name = "irrigation_start")
     LocalDateTime irrigationStart;
+    @Column(name = "monthly_rainfall_month")
     String monthlyRainfallMonth;
+    @Column(name = "monthly_rainfall")
     Float monthlyRainfall;
+    @Column(name = "cultivation_area")
     Float cultivationArea;
 
     @Override

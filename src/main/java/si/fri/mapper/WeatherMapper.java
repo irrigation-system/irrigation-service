@@ -2,7 +2,7 @@ package si.fri.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import si.fri.client.openmeteoapi.model.WeatherResponse;
+import si.fri.client.openmeteoapi.model.weather.WeatherResponse;
 import si.fri.dto.WeatherDto;
 import si.fri.entities.UserDataEntity;
 import si.fri.entities.WeatherDataEntity;

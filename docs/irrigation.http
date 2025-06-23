@@ -1,2 +1,8 @@
 ### Get weather
 GET http://localhost:8080/api/v1/weather?userToken=123
+
+### Get crop data
+GET http://localhost:8080/api/v1/crop?userToken=123
+
+### Get irrigation data
+GET http://localhost:8080/api/v1/irrigation?userToken=123

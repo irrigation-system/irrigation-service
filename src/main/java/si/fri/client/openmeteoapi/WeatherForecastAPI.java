@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
-import si.fri.client.openmeteoapi.model.WeatherResponse;
+import si.fri.client.openmeteoapi.model.weather.WeatherResponse;
 
 @Path("v1/forecast")
 @Produces(MediaType.APPLICATION_JSON)

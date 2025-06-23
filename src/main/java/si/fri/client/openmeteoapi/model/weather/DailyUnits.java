@@ -1,4 +1,4 @@
-package si.fri.client.openmeteoapi.model;
+package si.fri.client.openmeteoapi.model.weather;
 
 import lombok.Getter;
 import lombok.Setter;
