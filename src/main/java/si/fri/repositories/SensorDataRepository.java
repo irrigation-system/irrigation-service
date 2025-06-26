@@ -1,14 +1,16 @@
 package si.fri.repositories;
 
-import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import si.fri.entities.SensorDataEntity;
 import si.fri.entities.UserDataEntity;
 
+import java.util.UUID;
+
 @ApplicationScoped
-public class SensorDataRepository implements PanacheRepository<SensorDataEntity> {
+public class SensorDataRepository implements PanacheRepositoryBase<SensorDataEntity, UUID> {
 
     @Inject
     UserDataRepository userDataRepository;

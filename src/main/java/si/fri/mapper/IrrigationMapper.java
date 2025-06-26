@@ -9,9 +9,6 @@ import si.fri.entities.IrrigationDataEntity;
 @Mapper(componentModel = "cdi")
 public interface IrrigationMapper {
 
-    /**
-     * Maps IrrigationDataEntity to IrrigationDataDto
-     */
     @Mapping(source = "irrigationStart", target = "irrigationStart")
     @Mapping(source = "monthlyRainfallMonth", target = "monthlyRainfallMonth")
     @Mapping(source = "monthlyRainfall", target = "monthlyRainfall")

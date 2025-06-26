@@ -4,7 +4,6 @@ import io.quarkus.logging.Log;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.NotFoundException;
-import jakarta.ws.rs.QueryParam;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import si.fri.client.openmeteoapi.HistoricalWeatherAPI;
 import si.fri.client.openmeteoapi.WeatherForecastAPI;
@@ -36,9 +35,14 @@ public class WeatherService {
     WeatherRepository weatherRepository;
 
     @Inject
+    UserService userService;
+
+    @Inject
     WeatherMapper mapper;
 
-    public WeatherDto getWeatherForecastForUser(UserDataEntity user) {
+    public WeatherDto getWeatherForecastForUser(String userToken) {
+
+        UserDataEntity user = userService.getUserByToken(userToken);
 
         try {
             WeatherResponse response = fetchFromWeatherAPI(user.getLocation().getLatitude(), user.getLocation().getLongitude());

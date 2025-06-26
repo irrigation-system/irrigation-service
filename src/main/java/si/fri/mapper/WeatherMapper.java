@@ -12,11 +12,11 @@ public interface WeatherMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "timestamp", ignore = true)
-    @Mapping(target = "rainfallmm", source = "response.current.rain")
-    @Mapping(target = "etRef", source = "response.daily.et0_fao_evapotranspiration.first") // check if hourly should be used instead
-    @Mapping(target = "humidity", source = "response.current.relative_humidity_2m")
-    @Mapping(target = "temperature", source = "response.current.temperature_2m")
-    @Mapping(target = "user", source = "user")
+    @Mapping(source = "response.current.rain", target = "rainfallmm")
+    @Mapping(source = "response.daily.et0_fao_evapotranspiration.first", target = "etRef")
+    @Mapping(source = "response.current.relative_humidity_2m", target = "humidity")
+    @Mapping(source = "response.current.temperature_2m", target = "temperature")
+    @Mapping(source = "user", target = "user")
     WeatherDataEntity toEntity(WeatherResponse response, UserDataEntity user);
 
     WeatherDto toDto(WeatherDataEntity entity);

@@ -1,7 +1,6 @@
 package si.fri.dto;
 
 public record CropInfoDto(
-        // Fields from CropEntity
         String name,
         Float minAllowedMoisture,
         Float coefficientDev,

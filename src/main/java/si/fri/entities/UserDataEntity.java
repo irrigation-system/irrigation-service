@@ -1,7 +1,10 @@
 package si.fri.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.util.Objects;
@@ -28,7 +31,7 @@ public class UserDataEntity {
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     LocationEntity location;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "irrigation_id", referencedColumnName = "id")
     private IrrigationDataEntity irrigationEntity;
 

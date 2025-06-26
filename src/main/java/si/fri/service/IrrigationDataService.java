@@ -2,6 +2,7 @@ package si.fri.service;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import si.fri.dto.IrrigationDataDto;
 import si.fri.entities.IrrigationDataEntity;
 import si.fri.entities.UserDataEntity;
@@ -17,9 +18,16 @@ public class IrrigationDataService {
     WeatherService weatherService;
 
     @Inject
-    IrrigationMapper irrigationMapper;
+    UserService userService;
 
-    public IrrigationDataDto getIrrigationData(UserDataEntity userDataEntity) {
+    @Inject
+    IrrigationMapper mapper;
+
+    @Transactional
+    public IrrigationDataDto getIrrigationData(String userToken) {
+
+        UserDataEntity userDataEntity = userService.getUserByToken(userToken);
+
         final IrrigationDataEntity irrigationEntity = userDataEntity.getIrrigationEntity();
 
         // Check if an irrigation entity exists
@@ -45,7 +53,7 @@ public class IrrigationDataService {
 
         }
 
-        return irrigationMapper.toDto(irrigationEntity);
+        return mapper.toDto(irrigationEntity);
     }
 
 }

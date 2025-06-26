@@ -1,14 +1,16 @@
 package si.fri.repositories;
 
-import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import si.fri.entities.UserDataEntity;
 import si.fri.entities.WeatherDataEntity;
 
+import java.util.UUID;
+
 @ApplicationScoped
-public class WeatherRepository implements PanacheRepository<WeatherDataEntity> {
+public class WeatherRepository implements PanacheRepositoryBase<WeatherDataEntity, UUID> {
 
     @Inject
     UserDataRepository userDataRepository;

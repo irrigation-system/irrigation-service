@@ -8,9 +8,6 @@ import si.fri.entities.CropEntity;
 @Mapper(componentModel = "cdi")
 public interface CropMapper {
 
-    /**
-     * Maps both CropEntity and IrrigationDataEntity to a complete CropInfoDto
-     */
     @Mapping(source = "crop.name", target = "name")
     @Mapping(source = "crop.minAllowedMoisture", target = "minAllowedMoisture")
     @Mapping(source = "crop.coefficientDev", target = "coefficientDev")

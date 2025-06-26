@@ -16,4 +16,7 @@ public class CropResourceImpl implements CropResource {
     public CropInfoDto getCropInfo(String userToken) {
         return cropService.getUserByToken(userToken);
     }
+
+    // TODO POST get all crops(names and ids)
+
 }
