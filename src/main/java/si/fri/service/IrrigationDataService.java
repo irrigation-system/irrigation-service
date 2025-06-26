@@ -9,6 +9,7 @@ import si.fri.entities.UserDataEntity;
 import si.fri.mapper.IrrigationMapper;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.YearMonth;
 
 @ApplicationScoped
@@ -54,6 +55,21 @@ public class IrrigationDataService {
         }
 
         return mapper.toDto(irrigationEntity);
+    }
+
+    @Transactional
+    public boolean startStopIrrigation(String userToken) {
+        UserDataEntity userDataEntity = userService.getUserByToken(userToken);
+
+        final IrrigationDataEntity irrigationEntity = userDataEntity.getIrrigationEntity();
+
+        if (irrigationEntity.getIrrigationStart() == null) {
+            irrigationEntity.setIrrigationStart(LocalDateTime.now());
+        } else {
+            irrigationEntity.setIrrigationStart(null);
+        }
+
+        return true;
     }
 
 }

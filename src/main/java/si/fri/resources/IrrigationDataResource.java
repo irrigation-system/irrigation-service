@@ -12,5 +12,8 @@ public interface IrrigationDataResource {
     @GET
     IrrigationDataDto getIrrigationData(@QueryParam("userToken") String userToken);
 
-    // TODO start/stop irrigation
+    @GET
+    @Path("/toggle")
+    Boolean startStopIrrigation(@QueryParam("userToken") String userToken);
+
 }

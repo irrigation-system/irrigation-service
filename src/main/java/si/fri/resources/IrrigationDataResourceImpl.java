@@ -27,4 +27,18 @@ public class IrrigationDataResourceImpl implements IrrigationDataResource {
         }
 
     }
+
+    @Override
+    public Boolean startStopIrrigation(String userToken) {
+
+        try {
+            return irrigationDataService.startStopIrrigation(userToken);
+        } catch (EntityNotFoundException e) {
+            throw new WebApplicationException(
+                    "User with token '" + userToken + "' does not exist.",
+                    Response.Status.NOT_FOUND
+            );
+        }
+
+    }
 }
