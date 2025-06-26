@@ -17,3 +17,6 @@ Content-Type: application/json
   "cropId": "4a2b1c46-f0af-4579-a002-ed5c0a096393",
   "cultivationArea": 1.5
 }
+
+### Get all crops
+GET http://localhost:8080/api/v1/crop/all

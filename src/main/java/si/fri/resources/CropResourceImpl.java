@@ -2,8 +2,11 @@ package si.fri.resources;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import si.fri.dto.CropDto;
 import si.fri.dto.CropInfoDto;
 import si.fri.service.CropService;
+
+import java.util.List;
 
 
 @ApplicationScoped
@@ -17,6 +20,9 @@ public class CropResourceImpl implements CropResource {
         return cropService.getUserByToken(userToken);
     }
 
-    // TODO POST get all crops(names and ids)
+    @Override
+    public List<CropDto> getAllCrops() {
+        return cropService.getAllCrops();
+    }
 
 }
