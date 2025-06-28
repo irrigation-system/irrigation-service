@@ -22,4 +22,8 @@ public class SensorDataRepository implements PanacheRepositoryBase<SensorDataEnt
         persist(entity);
     }
 
+    public SensorDataEntity findLatest(UserDataEntity user) {
+        return find("user = ?1 order by timestamp desc", user)
+                .firstResult();
+    }
 }
